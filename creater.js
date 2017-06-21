@@ -41,7 +41,7 @@ function createArray(fn, fp, array) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('create file ' + filename + ' done');
+                    console.log('create file ' + filepath + ' done');
                 }
             });
         }
@@ -60,12 +60,12 @@ function createObject(fn, fp, dict) {
             } else if (element instanceof Object) {
                 createObject(fn, excPath, element);
             } else {
-                var filename = path.join(excPath, element);
-                mkFile(filename, '\n', function (err, data) {
+                var filepath = path.join(excPath, element);
+                mkFile(filepath, '\n', function (err, data) {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log('create file ' + filename + ' done');
+                        console.log('create file ' + filepath + ' done');
                     }
                 });
             }
