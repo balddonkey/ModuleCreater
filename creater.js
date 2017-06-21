@@ -13,6 +13,8 @@ function create(name, atpath = './') {
     // mkdir
     if (atpath != null) {
         mkdir(atpath);
+    } else {
+        atpath = './';
     }
 
     // create file
