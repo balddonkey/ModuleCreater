@@ -7,7 +7,7 @@ function route(args) {
     if (handle == 'init') Setup.init();
     else if (handle == 'create') {
         var name = args[1];
-        var path = null;
+        var path = './';
         if (args.length > 2) {
             path = args[2];
         }
