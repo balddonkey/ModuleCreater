@@ -66,6 +66,10 @@ function createObject(fn, fp, dict) {
 }
 
 function mkFile(fn, content, cb) {
+    if (fs.existsSync(fn)) {
+        console.log(fn, 'is exist');
+        return;
+    }
     fs.writeFile(fn, content, function (err, data) {
         cb(err, data);
     });
