@@ -19,7 +19,7 @@ function create(name, atpath = './') {
     var config = JSON.parse(fs.readFileSync('./mcreater.config.json'));
     config.forEach(function (element) {
         var filename = element.replace('${name}', name);
-        fs.writeFile(path.join(atpath, filename), null, function (err, data) {
+        fs.writeFile(path.join(atpath, filename), '\n', function (err, data) {
             if (err) {
                 console.log(err);
             } else {
