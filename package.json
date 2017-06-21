@@ -1,0 +1,22 @@
+{
+  "name": "mocreater",
+  "version": "1.0.0",
+  "description": "创建模块文件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balddonkey/ModuleCreater.git"
+  },
+  "author": "Balddonkey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/balddonkey/ModuleCreater/issues"
+  },
+  "homepage": "https://github.com/balddonkey/ModuleCreater#readme",
+  "bin":{
+      "mcreater": "./index.js"
+  }
+}
