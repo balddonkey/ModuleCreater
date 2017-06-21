@@ -1,4 +1,16 @@
-[
-    "${name}.js",
-    "${name}.css"
-]
+{
+    "ZZPages": [
+        {
+            "DD": [
+                "index.js",
+                "style.js"
+            ]
+        },
+        {
+            "AA": [
+                "index.js",
+                "style.js"
+            ]
+        }
+    ]
+}

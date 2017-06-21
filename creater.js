@@ -24,19 +24,27 @@ function create(name, atpath = './') {
 
 function createArray(fn, fp, array) {
     array.forEach(function (element) {
-        var filename = element.replace('${name}', fn);  // 替换${name}
-        var filepath = path.join(fp, filename);
-        if (fs.existsSync(filepath)) {
-            console.log(filename, 'is exists');
-            return;
-        }
-        mkFile(filepath, '\n', function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('create file ' + filename + ' done');
+        if (element instanceof Array) {
+            mkdir(fp);
+            createArray(fn, fp, element);
+        } else if (element instanceof Object) {
+            mkdir(fp);
+            createObject(fn, fp, element);
+        } else {
+            var filename = element.replace('${name}', fn);  // 替换${name}
+            var filepath = path.join(fp, filename);
+            if (fs.existsSync(filepath)) {
+                console.log(filename, 'is exists');
+                return;
             }
-        });
+            mkFile(filepath, '\n', function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('create file ' + filename + ' done');
+                }
+            });
+        }
     }, this);
 }
 

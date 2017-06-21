@@ -40,3 +40,40 @@ $ mcreater create file path // create file at path, relative path, see config fi
     }
 }
 ```
+### Even more
+```
+[
+    [
+        {
+            "${name}A": [
+                "index.js",
+                "style.js"
+            ]
+        },
+        {
+            "${name}B": [
+                "index.js",
+                "style.js"
+            ]
+        }
+    ]
+]
+```
+```
+{
+    "${name}": [
+        {
+            "${name}A": [
+                "index.js",
+                "style.js"
+            ]
+        },
+        {
+            "${name}B": [
+                "index.js",
+                "style.js"
+            ]
+        }
+    ]
+}
+```
