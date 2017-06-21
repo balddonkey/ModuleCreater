@@ -1,5 +1,8 @@
 # ModuleCreater
-创建模块文件
+Create a series of file depend on the config file description.
+
+# Install
+cd file directory and execute cmd 'node link'.
 
 # Usage
 ``` node
