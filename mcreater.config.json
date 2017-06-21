@@ -1,4 +1,3 @@
-[
-	"${name}.js",
-	"${name}.css"
-]
+{
+    "${name}": "bzs"
+}

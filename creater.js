@@ -10,23 +10,27 @@ function create(name, atpath = './') {
         return;
     }
 
-    // mkdir
-    if (atpath != null) {
-        mkdir(atpath);
-    } else {
-        atpath = './';
-    }
-
     // create file
     var config = JSON.parse(fs.readFileSync('./mcreater.config.json'));
-    config.forEach(function (element) {
-        var filename = element.replace('${name}', name);
-        var filepath = path.join(atpath, filename);
+    if (config instanceof Array) {
+        createArray(name, atpath, config);
+    } else if (config instanceof Object) {
+        createObject(name, atpath, config);
+    } else {
+        console.log('config data need Array or Object');
+    }
+    return;
+}
+
+function createArray(fn, fp, array) {
+    array.forEach(function (element) {
+        var filename = element.replace('${name}', fn);  // 替换${name}
+        var filepath = path.join(fp, filename);
         if (fs.existsSync(filepath)) {
             console.log(filename, 'is exists');
             return;
         }
-        fs.writeFile(filepath, '\n', function (err, data) {
+        mkFile(filepath, '\n', function (err, data) {
             if (err) {
                 console.log(err);
             } else {
@@ -34,7 +38,37 @@ function create(name, atpath = './') {
             }
         });
     }, this);
+}
 
+function createObject(fn, fp, dict) {
+    for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+            var element = dict[key];
+            var excKey = key.replace('${name}', fn);    // 替换${name}
+            var excPath = path.join(fp, excKey);
+            mkdir(excPath);
+            if (element instanceof Array) {
+                createArray(fn, excPath, element);
+            } else if (element instanceof Object) {
+                createObject(fn, excPath, element);
+            } else {
+                var filename = path.join(excPath, element);
+                mkFile(filename, '\n', function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('create file ' + filename + ' done');
+                    }
+                });
+            }
+        }
+    }
+}
+
+function mkFile(fn, content, cb) {
+    fs.writeFile(fn, content, function (err, data) {
+        cb(err, data);
+    });
 }
 
 function mkdir(dirpath, dirname) {
