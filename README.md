@@ -1,5 +1,5 @@
 # ModuleCreater
-Create a series of file depend on the config file description.
+Create a series of files depend on the config file description.
 
 # Install
 cd file directory and execute cmd 'node link'.
