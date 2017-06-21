@@ -9,3 +9,34 @@ cd file directory and execute cmd 'node link'.
 $ mcreater init             // create config file
 $ mcreater create file path // create file at path, relative path, see config file settings
 ```
+
+## Config example
+```
+[
+    "${name}.js",
+    "${name}.css"
+]
+```
+```
+{
+    "${name}": "index.js"
+}
+```
+```
+{
+    "${name}": [
+        "index.js",
+        "index.css"
+    ]
+}
+```
+```
+{
+    "${name}": {
+        "${name}SubDir": [
+            "index.js",
+            "index.css"
+        ]
+    }
+}
+```
