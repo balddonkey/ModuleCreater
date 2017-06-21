@@ -6,7 +6,7 @@ function create(name, atpath = './') {
 
     // check config file exist
     if (!fs.existsSync('./mcreater.config.json')) {
-        console.log('No config file found, maybe you need call init first.')
+        console.log('No config file found, you need call init first.')
         return;
     }
 
@@ -19,7 +19,12 @@ function create(name, atpath = './') {
     var config = JSON.parse(fs.readFileSync('./mcreater.config.json'));
     config.forEach(function (element) {
         var filename = element.replace('${name}', name);
-        fs.writeFile(path.join(atpath, filename), '\n', function (err, data) {
+        var filepath = path.join(atpath, filename);
+        if (fs.existsSync(filepath)) {
+            console.log(filename, 'is exists');
+            return;
+        }
+        fs.writeFile(filepath, '\n', function (err, data) {
             if (err) {
                 console.log(err);
             } else {
