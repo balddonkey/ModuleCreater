@@ -1,16 +1,4 @@
-{
-    "ZZPages": [
-        {
-            "DD": [
-                "index.js",
-                "style.js"
-            ]
-        },
-        {
-            "AA": [
-                "index.js",
-                "style.js"
-            ]
-        }
-    ]
-}
+[
+    "${name}.js",
+    "${name}.css"
+]
