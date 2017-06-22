@@ -12,18 +12,46 @@ $ mcreater create name path // create file at path, relative path, see config fi
 
 ## Config example
 ```
-[
+{
+    "default": {
+        "map": "./",
+        "hierarchy": [
+            "${name}.js",
+            "${name}.css"
+        ]
+    },
+    "page": {
+        "map": "./Pages",
+        "hierarchy": {
+            "${name}subpath": [
+                "${name}.js",
+                "${name}.css"
+            ]
+        }
+    },
+    "component": {
+        "map": "./Components",
+        "hierarchy": [
+            "${name}.js",
+            "${name}.css"
+        ]
+    }
+}
+```
+## Hierarchy setting example
+```
+"hierarchy": [
     "${name}.js",
     "${name}.css"
 ]
 ```
 ```
-{
+"hierarchy": {
     "${name}": "index.js"
 }
 ```
 ```
-{
+"hierarchy": {
     "${name}": [
         "index.js",
         "index.css"
@@ -31,7 +59,7 @@ $ mcreater create name path // create file at path, relative path, see config fi
 }
 ```
 ```
-{
+"hierarchy": {
     "${name}": {
         "${name}SubDir": [
             "index.js",
@@ -40,9 +68,9 @@ $ mcreater create name path // create file at path, relative path, see config fi
     }
 }
 ```
-### Even more
+Even more
 ```
-[
+"hierarchy": [
     [
         {
             "${name}A": [
@@ -60,7 +88,7 @@ $ mcreater create name path // create file at path, relative path, see config fi
 ]
 ```
 ```
-{
+"hierarchy": {
     "${name}": [
         {
             "${name}A": [

@@ -1,8 +1,7 @@
 
 const fs = require('fs');
-var path = require('path');
-
-var configs = JSON.parse(fs.readFileSync('./mcreater.config.json'));
+const path = require('path');
+const readline = require('readline');
 
 function create(name, map) {
 
@@ -14,23 +13,28 @@ function create(name, map) {
 
     // create file
     if (map == null) {
+        console.log('Unspecified path map, use default settings.');
         map = 'default';
     }
-
+    var configs = JSON.parse(fs.readFileSync('./mcreater.config.json'));
     var config = configs[map];
-    config = config != null ? config : config['default'];
     if (config == null) {
         console.log('Not found path map: ' + map + ", checkout mcreater.config.json file.");
-        return;
+    } else {
+        console.log('create');
+        createAtPath(name, config.map, config.hierarchy);
     }
-    if (config.hierarchy instanceof Array) {
-        createArray(name, config.map, config.hierarchy);
-    } else if (config instanceof Object) {
-        createObject(name, config.map, config.hierarchy);
+}
+
+function createAtPath(fname, fpath, hierarchy) {
+    mkdir(fpath);
+    if (hierarchy instanceof Array) {
+        createArray(fname, fpath, hierarchy);
+    } else if (hierarchy instanceof Object) {
+        createObject(fname, fpath, hierarchy);
     } else {
         console.log('config data need Array or Object');
     }
-    return;
 }
 
 function createArray(fn, fp, array) {
@@ -45,7 +49,7 @@ function createArray(fn, fp, array) {
             var filename = element.replace('${name}', fn);  // 替换${name}
             var filepath = path.join(fp, filename);
             if (fs.existsSync(filepath)) {
-                console.log(filename, 'is exists');
+                console.log(filepath, 'is exists');
                 return;
             }
             mkFile(filepath, '\n', function (err, data) {
@@ -73,6 +77,10 @@ function createObject(fn, fp, dict) {
                 createObject(fn, excPath, element);
             } else {
                 var filepath = path.join(excPath, element);
+                if (fs.existsSync(filepath)) {
+                    console.log(filepath, 'is exists');
+                    return;
+                }
                 mkFile(filepath, '\n', function (err, data) {
                     if (err) {
                         console.log(err);
