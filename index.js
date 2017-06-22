@@ -9,5 +9,5 @@ if (args.length > 0) {
     if (args[0].indexOf('-') > -1) help(args);
     else router.route(args);
 } else {
-    help(null);
+    help();
 }

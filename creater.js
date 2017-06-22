@@ -21,7 +21,6 @@ function create(name, map) {
     if (config == null) {
         console.log('Not found path map: ' + map + ", checkout mcreater.config.json file.");
     } else {
-        console.log('create');
         createAtPath(name, config.map, config.hierarchy);
     }
 }

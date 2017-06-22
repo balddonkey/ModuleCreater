@@ -2,6 +2,7 @@
 const fs = require('fs');
 const Setup = require('./setup.js');
 const Creater = require('./creater.js');
+const help = require('./help.js').help;
 
 function route(args) {
     var handle = args[0];
@@ -13,6 +14,9 @@ function route(args) {
         } else {
             Creater.create(name);
         }
+    } else {
+        console.log('Unknow command: ' + handle);
+        help();
     }
 }
 
