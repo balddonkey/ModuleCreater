@@ -7,7 +7,7 @@ cd file directory and execute cmd 'node link'.
 # Usage
 ``` node
 $ mcreater init             // create config file 'mcreater.config.json'
-$ mcreater create name path // create file at path, relative path, see config file settings
+$ mcreater create <name> [path map] // create file at path, relative path, see config file settings
 ```
 
 ## Config example
