@@ -1,4 +1,31 @@
-[
-    "${name}.js",
-    "${name}.css"
-]
+{
+    "default": {
+        "map": "./",
+        "hierarchy": [
+            "${name}.js",
+            "${name}.css"
+        ]
+    },
+    "component": {
+        "map": "./",
+        "hierarchy": {
+            "ZZComponents": {
+                "${name}": [
+                    "index.js",
+                    "style.js"
+                ]
+            }
+        }
+    },
+    "page": {
+        "map": "./",
+        "hierarchy": {
+            "ZZPages": {
+                "${name}": [
+                    "index.js",
+                    "style.js"
+                ]
+            }
+        }
+    }
+}

@@ -2,7 +2,9 @@
 const fs = require('fs');
 var path = require('path');
 
-function create(name, atpath = './') {
+var configs = JSON.parse(fs.readFileSync('./mcreater.config.json'));
+
+function create(name, map) {
 
     // check config file exist
     if (!fs.existsSync('./mcreater.config.json')) {
@@ -11,11 +13,20 @@ function create(name, atpath = './') {
     }
 
     // create file
-    var config = JSON.parse(fs.readFileSync('./mcreater.config.json'));
-    if (config instanceof Array) {
-        createArray(name, atpath, config);
+    if (map == null) {
+        map = 'default';
+    }
+
+    var config = configs[map];
+    config = config != null ? config : config['default'];
+    if (config == null) {
+        console.log('Not found path map: ' + map + ", checkout mcreater.config.json file.");
+        return;
+    }
+    if (config.hierarchy instanceof Array) {
+        createArray(name, config.map, config.hierarchy);
     } else if (config instanceof Object) {
-        createObject(name, atpath, config);
+        createObject(name, config.map, config.hierarchy);
     } else {
         console.log('config data need Array or Object');
     }
@@ -53,6 +64,7 @@ function createObject(fn, fp, dict) {
         if (dict.hasOwnProperty(key)) {
             var element = dict[key];
             var excKey = key.replace('${name}', fn);    // 替换${name}
+
             var excPath = path.join(fp, excKey);
             mkdir(excPath);
             if (element instanceof Array) {

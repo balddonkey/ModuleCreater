@@ -1,4 +1,5 @@
 
+const fs = require('fs');
 const Setup = require('./setup.js');
 const Creater = require('./creater.js');
 
@@ -7,11 +8,11 @@ function route(args) {
     if (handle == 'init') Setup.init();
     else if (handle == 'create') {
         var name = args[1];
-        var path = './';
         if (args.length > 2) {
-            path = args[2];
+            Creater.create(name, args[2]);
+        } else {
+            Creater.create(name);
         }
-        Creater.create(name, path);
     }
 }
 

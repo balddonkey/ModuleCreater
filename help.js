@@ -17,7 +17,7 @@ function phelp() {
     console.log('-v, --version          output the version number');
     console.log('Commands: \n');
     console.log('init   init mcreater config file');
-    console.log('create <module name> [path] creater module name, option at path');
+    console.log('create <module_name> [path_map] creater module name, option path map, setting by config file');
 }
 
 function pversion() {
