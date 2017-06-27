@@ -20,7 +20,7 @@ const defaultContent = {
             ]
         }
     },
-    conponent: {
+    component: {
         map: "./Components",
         hierarchy: [
             "${name}.js",

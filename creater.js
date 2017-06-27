@@ -16,16 +16,20 @@ function create(name, map) {
         map = 'default';
     }
     var configs = JSON.parse(fs.readFileSync('./mcreater.config.json'));
-    var config = configs[map];
-    if (config == null) {
+    if (null == configs) {
         console.log('Not found path map: ' + map + ", checkout mcreater.config.json file.");
     } else {
+        var config = configs[map];
         createAtPath(name, config.map, config.hierarchy);
     }
 }
 
 function createAtPath(fname, fpath, hierarchy) {
-    mkdir(fpath);
+    if (null == fpath) {
+        fpath = './';
+    } else {
+        mkdir(fpath);
+    }
     if (hierarchy instanceof Array) {
         createArray(fname, fpath, hierarchy);
     } else if (hierarchy instanceof Object) {
